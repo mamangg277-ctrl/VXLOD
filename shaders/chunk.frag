@@ -7,8 +7,8 @@ const vec3 inv_gamma = 1 / gamma;
 
 uniform sampler2DArray u_texture_array_0;
 uniform vec3 bg_color;
+uniform float water_line;
 
-//in vec3 voxel_color;
 in vec2 uv;
 in float shading;
 in vec3 frag_world_pos;
@@ -26,6 +26,9 @@ void main(){
 //    tex_col.rgb *= voxel_color;
 //    tex_col = tex_col * 0.001 + vec3(1);
     tex_col *= shading;
+
+    // underwater effect
+    if (frag_world_pos.y < water_line) tex_col *= vec3(0.0, 0.3, 1.0);
 
     //fog
     float fog_dist = gl_FragCoord.z / gl_FragCoord.w;
