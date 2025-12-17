@@ -9,7 +9,7 @@ DEPTH_SIZE = 24
 NUM_SAMPLES = 1  # antialiasing
 
 #resolution
-WIN_RES = glm.vec2(1066,600)
+WIN_RES = glm.vec2(1280,720)
 
 #world gen
 SEED = 525761332
@@ -25,7 +25,7 @@ CHUNK_VOL = CHUNK_AREA * CHUNK_SIZE
 CHUNK_SPHERE_RADIUS = H_CHUNK_SIZE * math.sqrt(3)
 
 #world
-WORLD_W, WORLD_H = 10, 2
+WORLD_W, WORLD_H = 24, 2
 WORLD_D = WORLD_W
 WORLD_AREA = WORLD_W * WORLD_D
 WORLD_VOL = WORLD_AREA * WORLD_H
@@ -81,3 +81,6 @@ WATER_AREA = 5 * CHUNK_SIZE * WORLD_W
 # cloud
 CLOUD_SCALE = 25
 CLOUD_HEIGHT = WORLD_H * CHUNK_SIZE * 2
+
+#render distance (in chunks)
+RENDER_DISTANCE = 8

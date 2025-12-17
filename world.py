@@ -11,6 +11,7 @@ class World:
         self.build_chunks()
         self.build_chunks_mesh()
         self.voxel_handler = VoxelHandler(self)
+        self.render_distance_sq = RENDER_DISTANCE * RENDER_DISTANCE
 
     def update(self):
         self.voxel_handler.update()
@@ -35,5 +36,13 @@ class World:
             chunk.build_mesh()
 
     def render(self):
+        player_chunk_pos = glm.ivec3(self.app.player.position // CHUNK_SIZE)
+
         for chunk in self.chunks:
-            chunk.render()
+            if chunk is None:
+                continue
+            #hitung jarak
+            chunk_dist_sq = glm.distance2(glm.vec3(player_chunk_pos), glm.vec3(chunk.position))
+            #hanya render dlm jrk
+            if chunk_dist_sq <= self.render_distance_sq:
+                chunk.render()
